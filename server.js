@@ -4,6 +4,8 @@ var http = require("http"),
     fs = require("fs")
     port = process.argv[2] || 8888;
 
+console.log(path);
+
 http.createServer(function(request, response) {
 
   var uri = url.parse(request.url).pathname

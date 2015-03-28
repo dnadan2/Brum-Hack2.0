@@ -10,6 +10,7 @@
   <script src="js/OrbitControls.js"></script>
   <script src="js/threex.universalloader.js"></script>
   <script src="js/ColladaLoader.js"></script>
+  <script src="js/OculusRiftEffect.js"></script>
 
   <script>
 
@@ -96,8 +97,12 @@ chair = object3d;
       // Read more about requestAnimationFrame at http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
       requestAnimationFrame(animate);
       
+	//Oculus Rift Effect
+	effect = new THREE.OculusRiftEffect(renderer);
+
+
       // Render the scene.
-      renderer.render(scene, camera);
+      effect.render(scene, camera);
       controls.update();
 
     }
