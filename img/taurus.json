@@ -1,0 +1,16 @@
+{
+	"metadata": {
+		"version": 4,
+		"type": "BufferGeometry",
+		"generator": "BufferGeometryExporter"
+	},
+	"uuid": "D2FCB292-827F-429C-A11C-387B62ABFA48",
+	"type": "TorusGeometry",
+	"radius": 101.38,
+	"tube": 40.66,
+	"radialSegments": 12,
+	"tubularSegments": 17,
+	"arc": 6.28,
+        "vertices": [],
+        "faces": []
+}

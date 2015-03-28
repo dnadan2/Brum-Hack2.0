@@ -61,6 +61,7 @@
         <script src="js/Three.js"></script>
         <script src="js/cannon.js"></script>
         <script src="js/PointerLockControls.js"></script>
+        <script src="js/JSONLoader.js"></script>
 
         <div id="blocker">
 
@@ -74,7 +75,7 @@
 
         <script>
 
-            var sphereShape, sphereBody, world, physicsMaterial, walls=[], balls=[], ballMeshes=[], boxes=[], boxMeshes=[];
+            var sphereShape, sphereBody, world, physicsMaterial, walls=[], balls=[], ballMeshes=[], boxes=[], boxMeshes=[], taurus;
 
             var camera, scene, renderer;
             var geometry, material, mesh;
@@ -247,7 +248,50 @@
                 }
                 scene.add( light );
 
+                var morphs = [];
 
+                var loader = new THREE.JSONLoader();
+				loader.load( 'img/chair.json', function ( geometry, materials ) {
+
+					// adjust color a bit
+
+					var material = materials[ 0 ];
+					material.morphTargets = true;
+					material.color.setHex( 0xffaaaa );
+
+					var faceMaterial = new THREE.MeshFaceMaterial( materials );
+
+						// random placement in a grid
+
+						var x = THREE.Math.randFloatSpread( 1 );
+						var z = THREE.Math.randFloatSpread( 1 );
+
+						// leave space for big monster
+
+						morph = new THREE.MorphAnimMesh( geometry, faceMaterial );
+
+						// one second duration
+
+						morph.duration = 1000;
+
+						// random animation offset
+
+						morph.time = 1000 * Math.random();
+
+						var s = THREE.Math.randFloat( 10000, 10000 );
+						morph.scale.set( s, s, s );
+
+						morph.position.set( x, 0, z );
+						morph.rotation.y = THREE.Math.randFloat( -0.25, 0.25 );
+
+						morph.matrixAutoUpdate = false;
+						morph.updateMatrix();
+
+						scene.add( morph );
+
+console.log('morph');						morphs.push( morph );
+
+				} );
 
                 controls = new PointerLockControls( camera , sphereBody );
                 scene.add( controls.getObject() );
