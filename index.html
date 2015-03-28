@@ -87,9 +87,11 @@ chair = object3d;
 
       // Add OrbitControls so that we can pan around with the mouse.
       controls = new THREE.OrbitControls(camera, renderer.domElement);
+	//Oculus Rift Effect
+	effect = new THREE.OculusRiftEffect(renderer);
 
     }
-
+var effect;
 
     // Renders the scene and updates the render as needed.
     function animate() {
@@ -97,8 +99,6 @@ chair = object3d;
       // Read more about requestAnimationFrame at http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
       requestAnimationFrame(animate);
       
-	//Oculus Rift Effect
-	effect = new THREE.OculusRiftEffect(renderer);
 
 
       // Render the scene.

@@ -4,8 +4,6 @@
  * Effect to render the scene in stereo 3d side by side with lens distortion.
  * It is written to be used with the Oculus Rift (http://www.oculusvr.com/) but
  * it works also with other HMD using the same technology
- * 
- * &&&&&&&&&&&&&&Updated to work with DK2&&&&&&&&&&&&&&&&&&&
  */
 
 THREE.OculusRiftEffect = function ( renderer, options ) {
@@ -14,13 +12,13 @@ THREE.OculusRiftEffect = function ( renderer, options ) {
 
 	// Specific HMD parameters
 	var HMD = (options && options.HMD) ? options.HMD: {
-		// Parameters from the Oculus Rift DK2
-		hResolution: 1920, // <--
-		vResolution: 1080, // <--
-		hScreenSize: 0.12576, // <--
-		vScreenSize: 0.07074, // <--
-		interpupillaryDistance: 0.0635, // <--
-		lensSeparationDistance: 0.0635, // <--
+		// Parameters from the Oculus Rift DK1
+		hResolution: 1920,
+		vResolution: 1080,
+		hScreenSize: 0.12576,
+		vScreenSize: 0.07074,
+		interpupillaryDistance: 0.0635,
+		lensSeparationDistance: 0.0635,
 		eyeToScreenDistance: 0.041,
 		distortionK : [1.0, 0.22, 0.24, 0.0],
 		chromaAbParameter: [ 0.996, -0.004, 1.014, 0.0]
@@ -44,7 +42,7 @@ THREE.OculusRiftEffect = function ( renderer, options ) {
 
 	// Render target
 	var RTParams = { minFilter: THREE.LinearFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat };
-	var renderTarget = new THREE.WebGLRenderTarget( 960, 1080, RTParams ); // <--
+	var renderTarget = new THREE.WebGLRenderTarget( 960, 1080, RTParams );
 	var RTMaterial = new THREE.ShaderMaterial( {
 		uniforms: {
 			"texid": { type: "t", value: renderTarget },
@@ -154,9 +152,8 @@ THREE.OculusRiftEffect = function ( renderer, options ) {
 		renderer.setSize( width, height );
 	};
 
-var cc;
 	this.render = function ( scene, camera ) {
-		cc = renderer.getClearColor().clone();
+		var cc = renderer.getClearColor().clone();
 
 		// Clear
 		renderer.setClearColor(emptyColor);
