@@ -16,7 +16,6 @@ function loadScene() {
 var wallTexture = THREE.ImageUtils.loadTexture('img/wallpaper.jpg');
 
 function addWall(x1, z1, x2, z2, height,rot) {
-  console.log(Math.abs(z2-z1 + x2-x1));
   var geometry = new THREE.PlaneGeometry( Math.abs(z2-z1 + x2-x1), height, 1, 1);
   var material = new THREE.MeshBasicMaterial( {map: wallTexture} );
   var plane = new THREE.Mesh( geometry, material );

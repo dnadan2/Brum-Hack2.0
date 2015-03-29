@@ -248,6 +248,8 @@ function updateVRDevice() {
         if (!sensorDevice) return false;
         var vrState = sensorDevice.getState();
 
+console.log(vrState);
+
         if (riftObj) {
           if (vrState.position) {
             riftObj.position.x = vrState.position.x * VR_POSITION_SCALE;
@@ -256,7 +258,6 @@ function updateVRDevice() {
           }
 
           if (vrState.orientation) {
-            console.log(vrState);
             riftObj.quaternion.x = vrState.orientation.x;
             riftObj.quaternion.y = vrState.orientation.y;
             riftObj.quaternion.z = vrState.orientation.z;
