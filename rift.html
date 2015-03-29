@@ -321,7 +321,9 @@ var effect, objects={};
 if (!updateVRDevice()) {
           // If we don't have a VR device just spin the model around to give us
           // something pretty to look at.
-          objects['bed'].rotation.y += 0.01;
+          if (objects['bed'].rotation) {
+            objects['bed'].rotation.y += 0.01;
+          }
         }
 
 if (vrMode) {
