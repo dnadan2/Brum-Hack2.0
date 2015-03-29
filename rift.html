@@ -277,18 +277,10 @@ var point;
 var point = stick.applyQuaternion(camera.quaternion);
 
 console.log(point);
-console.log(stick);
 
-cameraLeft.quaternion.x = vrState.orientation.x;
-cameraLeft.quaternion.y = vrState.orientation.y;
-cameraLeft.quaternion.z = vrState.orientation.z;
-cameraLeft.quaternion.w = vrState.orientation.w;
+cameraLeft.lookAt(point);
 
-cameraRight.quaternion.x = vrState.orientation.x;
-cameraRight.quaternion.y = vrState.orientation.y;
-cameraRight.quaternion.z = vrState.orientation.z;
-cameraRight.quaternion.w = vrState.orientation.w;
-
+cameraRight.lookAt(point);
 
         return true;
         console.log(1/(+new Date() - t));
