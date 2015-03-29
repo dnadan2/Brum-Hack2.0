@@ -42,7 +42,7 @@ var VR_POSITION_SCALE = 25;
       //
       var sensorDevice = null;
       var hmdDevice = null;
-      var vrMode = false;
+      var vrMode = true;
       var renderTargetWidth = 1920;
       var renderTargetHeight = 1080;
       var riftObj;
@@ -248,7 +248,6 @@ function updateVRDevice() {
         if (!sensorDevice) return false;
         var vrState = sensorDevice.getState();
 
-        console.log(vrState);
 
 /*          if (vrState.position) {
             riftObj.position.x = vrState.position.x * VR_POSITION_SCALE;
@@ -263,7 +262,6 @@ function updateVRDevice() {
             riftObj.quaternion.w = vrState.orientation.w;
           }*/
 
-camera.useQuaternion = true;
 camera.quaternion.x = vrState.orientation.x;
 camera.quaternion.y = vrState.orientation.y;
 camera.quaternion.z = vrState.orientation.z;
