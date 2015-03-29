@@ -8,6 +8,7 @@
 
   <script src="js/three.js"></script>
   <script src="js/OrbitControls.js"></script>
+  <script src="js/PointerLockControls.js"></script>
   <script src="js/threex.universalloader.js"></script>
   <script src="js/ColladaLoader.js"></script>
   <script src="js/OculusRiftEffect.js"></script>
@@ -68,8 +69,9 @@ var effect, objects={};
 
       // Add OrbitControls so that we can pan around with the mouse.
       controls = new THREE.OrbitControls(camera, renderer.domElement);
-	//Oculus Rift Effect
-	effect = new THREE.OculusRiftEffect(renderer);
+//      controls = new THREE.PointerLockControls(camera);
+      //Oculus Rift Effect
+      effect = new THREE.OculusRiftEffect(renderer);
 
     }
 

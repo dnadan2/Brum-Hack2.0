@@ -3,7 +3,7 @@ function loadScene() {
   loader = new THREEx.UniversalLoader();
 
   addObject('img/swivel.dae');
-  addObject('img/beds.dae');
+  addObject('img/bed.dae');
   addObject('img/door.dae');
   addWall(0.6,-2,0.6,1.8,2.5,-Math.PI/2);
   addWall(-4.5,-2,0.6,-2,2.5,0);
@@ -68,8 +68,8 @@ function addObject(name) {
 function onload() {
   objects['swivel'].position.set(-3,0,-1);
   objects['swivel'].rotateY(-Math.PI/2);
-  objects['beds'].scale.set(0.2,0.2,0.2);
-  objects['beds'].position.set(0,0,0);
+  objects['bed'].scale.set(0.2,0.2,0.2);
+  objects['bed'].position.set(0,0,0);
   objects['door'].position.set(-3,0.7,1.75);
   objects['door'].scale.set(0.3,0.3,0.3);
   objects['door'].rotateY(Math.PI/2);
