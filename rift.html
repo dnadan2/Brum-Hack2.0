@@ -105,6 +105,17 @@ camera.position.set(-3,1,0);
         return outMat;
       }
 
+function bottle() {
+  vrMode = true;
+          resize();
+          if (renderer.domElement.webkitRequestFullscreen) {
+            renderer.domElement.webkitRequestFullscreen({ vrDisplay: hmdDevice });
+          } else if (renderer.domElement.mozRequestFullScreen) {
+            renderer.domElement.mozRequestFullScreen({ vrDisplay: hmdDevice });
+          }
+        }, false);
+}
+
       var cameraLeft = new THREE.PerspectiveCamera( 75, 4/3, 0.1, 1000 );
       var cameraRight = new THREE.PerspectiveCamera( 75, 4/3, 0.1, 1000 );
 
