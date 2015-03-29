@@ -108,7 +108,7 @@ camera.position.set(-3,1,0);
       }
 
 function bottle() {
-  vrMode = true;
+  vrMode = !vrMode;
           resize();
           if (renderer.domElement.webkitRequestFullscreen) {
             renderer.domElement.webkitRequestFullscreen({ vrDisplay: hmdDevice });
@@ -186,11 +186,11 @@ function bottle() {
             var eyeOffsetLeft = hmdDevice.getEyeTranslation("left");
             var eyeOffsetRight = hmdDevice.getEyeTranslation("right")
 
+            cameraLeft.position.set(-2, 0, 1.5);
             cameraLeft.position.add(eyeOffsetLeft);
-            cameraLeft.position.z = 12;
 
+            cameraLeft.position.set(-2, 0, 1.5);
             cameraRight.position.add(eyeOffsetRight);
-            cameraRight.position.z = 12;
 
             resizeFOV(0.0);
           }
@@ -262,23 +262,21 @@ function updateVRDevice() {
         var vrState = sensorDevice.getState();
 
 
-/*          if (vrState.position) {
-            riftObj.position.x = vrState.position.x * VR_POSITION_SCALE;
-            riftObj.position.y = vrState.position.y * VR_POSITION_SCALE;
-            riftObj.position.z = vrState.position.z * VR_POSITION_SCALE;
-          }
+//camera.quaternion.x = vrState.orientation.x;
+//camera.quaternion.y = vrState.orientation.y;
+//camera.quaternion.z = vrState.orientation.z;
+//camera.quaternion.w = vrState.orientation.w;
 
-          if (vrState.orientation) {
-            riftObj.quaternion.x = vrState.orientation.x;
-            riftObj.quaternion.y = vrState.orientation.y;
-            riftObj.quaternion.z = vrState.orientation.z;
-            riftObj.quaternion.w = vrState.orientation.w;
-          }*/
+cameraLeft.quaternion.x = vrState.orientation.x;
+cameraLeft.quaternion.y = vrState.orientation.y;
+cameraLeft.quaternion.z = vrState.orientation.z;
+cameraLeft.quaternion.w = vrState.orientation.w;
 
-camera.quaternion.x = vrState.orientation.x;
-camera.quaternion.y = vrState.orientation.y;
-camera.quaternion.z = vrState.orientation.z;
-camera.quaternion.w = vrState.orientation.w;
+cameraRight.quaternion.x = vrState.orientation.x;
+cameraRight.quaternion.y = vrState.orientation.y;
+cameraRight.quaternion.z = vrState.orientation.z;
+cameraRight.quaternion.w = vrState.orientation.w;
+
 
         return true;
         console.log(1/(+new Date() - t));
