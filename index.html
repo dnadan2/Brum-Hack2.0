@@ -11,14 +11,14 @@
   <script src="js/threex.universalloader.js"></script>
   <script src="js/ColladaLoader.js"></script>
   <script src="js/OculusRiftEffect.js"></script>
+  <script src="js/scene.js"></script>
 
   <script>
 
     // Set up the scene, camera, and renderer as global variables.
     var scene, camera, renderer;
 
-var chair;
-var bed;
+var effect, objects;
 
     init();
     animate();
@@ -51,58 +51,14 @@ var bed;
       });
 
       // Set the background color of the scene.
-      renderer.setClearColorHex(0x333F47, 1);
+      renderer.setClearColor(0x333F47, 1);
 
       // Create a light, set its position, and add it to the scene.
       var light = new THREE.PointLight(0xffffff);
       light.position.set(0,-100,200);
       scene.add(light);
-/*
-      // Load in the mesh and add it to the scene.
-      var loader = new THREE.JSONLoader();
-      loader.load( "img/treehouse_logo.js", function(geometry){
-        var material = new THREE.MeshLambertMaterial({color: 0x55B663});
-        mesh = new THREE.Mesh(geometry, material);
-        scene.add(mesh);
-      });
-*/
 
-        var loader = new THREEx.UniversalLoader();
-	loader.load('img/chair.dae', function(object3d){
-
-		// normalize the scale
-		var boundingBox	= new THREE.Box3().setFromObject(object3d)
-		var size	= boundingBox.size()
-		var scaleScalar	= Math.max(size.x, Math.max(size.y, size.z))
-		object3d.scale.divideScalar(scaleScalar)
-
-		// normalize the position
-		var boundingBox	= new THREE.Box3().setFromObject(object3d)
-		object3d.position.copy( boundingBox.center().negate() )
-
-chair = object3d;
-
-		// add the object to the scene
-		scene.add(object3d)
-	});
-var loader = new THREEx.UniversalLoader();
-	loader.load('img/beds.dae', function(object3d){
-
-		// normalize the scale
-		var boundingBox	= new THREE.Box3().setFromObject(object3d)
-		var size	= boundingBox.size()
-		var scaleScalar	= Math.max(size.x, Math.max(size.y, size.z))
-		object3d.scale.divideScalar(scaleScalar)
-
-		// normalize the position
-		var boundingBox	= new THREE.Box3().setFromObject(object3d)
-		object3d.position.copy( boundingBox.center().negate() )
-
-bed = object3d;
-
-		// add the object to the scene
-		scene.add(object3d)
-	});
+      loadScene();
 
       // Add OrbitControls so that we can pan around with the mouse.
       controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -110,7 +66,6 @@ bed = object3d;
 	effect = new THREE.OculusRiftEffect(renderer);
 
     }
-var effect;
 
     // Renders the scene and updates the render as needed.
     function animate() {
