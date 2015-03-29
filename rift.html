@@ -274,7 +274,7 @@ camera.quaternion.w = vrState.orientation.w;
 var stick = new THREE.Vector3(100, 0, 0);
 
 var point;
-var point = stick.apply(camera.quaternion);
+var point = stick.applyQuaternion(camera.quaternion);
 
 console.log(point);
 console.log(stick);
