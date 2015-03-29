@@ -54,9 +54,15 @@ var effect, objects={};
       renderer.setClearColor(0x333F47, 1);
 
       // Create a light, set its position, and add it to the scene.
-      var light = new THREE.PointLight(0xffffff);
-      light.position.set(0,-100,200);
+      var light = new THREE.PointLight(0xffe5c9);
+      light.position.set(-2,2,0);
       scene.add(light);
+      var light2 = new THREE.PointLight(0xffe5c9);
+      light2.position.set(-1,2,0);
+//      scene.add(light2);
+      var light3 = new THREE.PointLight(0xffe5c9);
+      light3.position.set(-3.5,1,-1);
+      scene.add(light3);
 
       loadScene();
 
