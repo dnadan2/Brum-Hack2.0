@@ -248,10 +248,9 @@ function updateVRDevice() {
         if (!sensorDevice) return false;
         var vrState = sensorDevice.getState();
 
-console.log(vrState);
+        console.log(vrState);
 
-        if (riftObj) {
-          if (vrState.position) {
+/*          if (vrState.position) {
             riftObj.position.x = vrState.position.x * VR_POSITION_SCALE;
             riftObj.position.y = vrState.position.y * VR_POSITION_SCALE;
             riftObj.position.z = vrState.position.z * VR_POSITION_SCALE;
@@ -262,8 +261,13 @@ console.log(vrState);
             riftObj.quaternion.y = vrState.orientation.y;
             riftObj.quaternion.z = vrState.orientation.z;
             riftObj.quaternion.w = vrState.orientation.w;
-          }
-        }
+          }*/
+
+camera.useQuaternion = true;
+camera.quaternion.x = vrState.orientation.x;
+camera.quaternion.y = vrState.orientation.y;
+camera.quaternion.z = vrState.orientation.z;
+camera.quaternion.w = vrState.orientation.w;
 
         return true;
       }
