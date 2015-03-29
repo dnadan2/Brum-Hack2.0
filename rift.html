@@ -47,7 +47,7 @@ var VR_POSITION_SCALE = 25;
       var renderTargetHeight = 1080;
       var riftObj;
 
-      window.onclick = bottle;
+      //window.onclick = bottle;
 
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 camera.position.set(-3,1,0);
@@ -106,16 +106,6 @@ camera.position.set(-3,1,0);
 
         return outMat;
       }
-
-function bottle() {
-  vrMode = !vrMode;
-          resize();
-          if (renderer.domElement.webkitRequestFullscreen) {
-            renderer.domElement.webkitRequestFullscreen({ vrDisplay: hmdDevice });
-          } else if (renderer.domElement.mozRequestFullScreen) {
-            renderer.domElement.mozRequestFullScreen({ vrDisplay: hmdDevice });
-          }
-}
 
       var cameraLeft = new THREE.PerspectiveCamera( 75, 4/3, 0.1, 1000 );
       var cameraRight = new THREE.PerspectiveCamera( 75, 4/3, 0.1, 1000 );
@@ -265,22 +255,10 @@ function updateVRDevice() {
         if (!sensorDevice) return false;
         var vrState = sensorDevice.getState();
 
-
 camera.quaternion.x = vrState.orientation.x;
 camera.quaternion.y = vrState.orientation.y;
 camera.quaternion.z = vrState.orientation.z;
 camera.quaternion.w = vrState.orientation.w;
-
-var stick = new THREE.Vector3(100, 0, 0);
-
-var point;
-var point = stick.applyQuaternion(camera.quaternion);
-
-console.log(point);
-
-cameraLeft.lookAt(point);
-
-cameraRight.lookAt(point);
 
         return true;
         console.log(1/(+new Date() - t));
