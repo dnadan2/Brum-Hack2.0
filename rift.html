@@ -137,7 +137,6 @@ var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHe
           var rightEyeViewport = hmdDevice.getRecommendedEyeRenderRect("right");
           renderTargetWidth = leftEyeViewport.width + rightEyeViewport.width;
           renderTargetHeight = Math.max(leftEyeViewport.height, rightEyeViewport.height);
-          document.getElementById("renderTarget").innerHTML = renderTargetWidth + "x" + renderTargetHeight;
         }
 
         resize();
