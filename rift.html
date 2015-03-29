@@ -172,8 +172,6 @@ var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHe
 
             var eyeOffsetLeft = hmdDevice.getEyeTranslation("left");
             var eyeOffsetRight = hmdDevice.getEyeTranslation("right")
-            document.getElementById("leftTranslation").innerHTML = printVector(eyeOffsetLeft);
-            document.getElementById("rightTranslation").innerHTML = printVector(eyeOffsetRight);
 
             cameraLeft.position.add(eyeOffsetLeft);
             cameraLeft.position.z = 12;
@@ -190,9 +188,6 @@ var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHe
           if (devices[i] instanceof PositionSensorVRDevice &&
                (!hmdDevice || devices[i].hardwareUnitId == hmdDevice.hardwareUnitId)) {
             sensorDevice = devices[i];
-            document.getElementById("hardwareUnitId").innerHTML = sensorDevice.hardwareUnitId;
-            document.getElementById("deviceId").innerHTML = sensorDevice.deviceId;
-            document.getElementById("deviceName").innerHTML = sensorDevice.deviceName;
             resetSensor();
           }
         }
