@@ -13,7 +13,7 @@ function loadScene() {
     var boundingBox	= new THREE.Box3().setFromObject(object3d);
     object3d.position.copy( boundingBox.center().negate() );
 
-    objects = object3d;
+    objects.chair = object3d;
 
     // add the object to the scene
     scene.add(object3d);
