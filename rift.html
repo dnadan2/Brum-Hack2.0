@@ -119,6 +119,10 @@ function bottle() {
 
       var cameraLeft = new THREE.PerspectiveCamera( 75, 4/3, 0.1, 1000 );
       var cameraRight = new THREE.PerspectiveCamera( 75, 4/3, 0.1, 1000 );
+      var both = new THREE.Object3D();
+      both.add(cameraLeft);
+      both.add(cameraRight);
+
 
       var fovScale = 1.0;
       function resizeFOV(amount) {
@@ -262,10 +266,16 @@ function updateVRDevice() {
         var vrState = sensorDevice.getState();
 
 
-//camera.quaternion.x = vrState.orientation.x;
-//camera.quaternion.y = vrState.orientation.y;
-//camera.quaternion.z = vrState.orientation.z;
-//camera.quaternion.w = vrState.orientation.w;
+camera.quaternion.x = vrState.orientation.x;
+camera.quaternion.y = vrState.orientation.y;
+camera.quaternion.z = vrState.orientation.z;
+camera.quaternion.w = vrState.orientation.w;
+
+var stick = new THREE.Vector3(100, 0, 0);
+
+var point;
+camera.quaternion.multiplyVector3(stick, point);
+console.log(point);
 
 cameraLeft.quaternion.x = vrState.orientation.x;
 cameraLeft.quaternion.y = vrState.orientation.y;
