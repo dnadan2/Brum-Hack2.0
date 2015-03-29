@@ -269,8 +269,10 @@ camera.quaternion.z = vrState.orientation.z;
 camera.quaternion.w = vrState.orientation.w;
 
         return true;
+        console.log(1/(+new Date() - t));
+        t = +new Date();
       }
-
+var t = +new Date();
 
 
     // Set up the scene, camera, and renderer as global variables.
