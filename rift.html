@@ -13,7 +13,7 @@
   <script src="js/ColladaLoader.js"></script>
   <script src="js/OculusRiftEffect.js"></script>
   <script src="js/scene.js"></script>
-
+  <script src="droid_sans_regular.typeface.js"></script>
   <script>
 
 
@@ -36,6 +36,7 @@ var VR_POSITION_SCALE = 25;
         str += "]";
         return str;
       }
+	  
 
       //
       // WebVR Device initialization
@@ -261,10 +262,7 @@ camera.quaternion.z = vrState.orientation.z;
 camera.quaternion.w = vrState.orientation.w;
 
         return true;
-        console.log(1/(+new Date() - t));
-        t = +new Date();
       }
-var t = +new Date();
 
 
     // Set up the scene, camera, and renderer as global variables.
@@ -272,6 +270,122 @@ var t = +new Date();
 
 var effect, objects={};
 
+var reset;
+
+var w=false,s=false,a=false,d=false;
+this.onkeyup = function(event) {
+  switch (event.keyCode) {
+    case 38:
+	case 87:
+		w=false;break;
+		case 37: /*left*/
+			case 65: /*A*/  
+			    a=false;break; 
+			case 40: /*down*/
+			case 83: /*S*/ 
+				s=false;break;
+			case 39: /*right*/
+			case 68: /*D*/ 
+			    d=false;break;
+  }
+};
+this.onkeydown = function ( event ) {
+
+			//event.preventDefault();
+		  var point;
+		  var vector = new THREE.Vector3( 0, 0, 0.05 );
+		  vector.applyQuaternion( camera.quaternion );
+		  
+		  switch ( event.keyCode ) {
+			case 38: /*up*/
+			case 87: /*W*/  
+				w = true;break;
+			case 37: /*left*/
+			case 65: /*A*/  
+			    a = true;break;
+			case 40: /*down*/
+			case 83: /*S*/ 
+				s = true;break;
+
+			case 39: /*right*/
+			case 68: /*D*/ 
+			    d = true;break;
+
+			case 82: /*R*/  camera.position.set(-3,1,0);scene = reset;reset=scene.clone();break;
+			case 70: /*F*/  break;
+			
+			case 80: /*P*/		
+				var obj = (new THREE.Mesh(new THREE.PlaneGeometry(0.4,0.4, 1, 1), new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('img/ball.jpg', undefined, function() {
+				  console.log(obj.material.map.image.naturalWidth);
+				}), side: THREE.DoubleSide})));
+				obj.position.set(camera.position.x - vector.x*19, camera.position.y- vector.y*19, camera.position.z - vector.z*19);
+				obj.lookAt(camera.position);
+				scene.add(obj);
+				break;
+			case 85:
+			  //open url
+			  var url = prompt('Enter the name of the image to add:');
+			  var obj = (new THREE.Mesh(new THREE.PlaneGeometry(0.4,0.4, 1, 1), new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('input/' + url, undefined, function() {
+				  var width = obj.material.map.image.naturalWidth;
+				  var height = obj.material.map.image.naturalHeight;
+				  var ratio = width / height;
+				  obj.scale.set(ratio, 1, ratio);
+				}), side: THREE.DoubleSide})));
+			  obj.position.set(camera.position.x - vector.x*12, camera.position.y- vector.y*12, camera.position.z - vector.z*12);
+			  obj.lookAt(camera.position);
+			  scene.add(obj);
+			  break;
+			case 49:
+				var obj = (new THREE.Mesh(new THREE.PlaneGeometry(0.4,0.4, 1, 1), new THREE.MeshBasicMaterial({transparent:true,map: THREE.ImageUtils.loadTexture('input/MLH.png'), side: THREE.DoubleSide})));
+				obj.position.set(camera.position.x - vector.x*19, camera.position.y- vector.y*19, camera.position.z - vector.z*19);
+				obj.lookAt(camera.position);
+				scene.add(obj);
+				break;
+			case 50:
+				var obj = (new THREE.Mesh(new THREE.PlaneGeometry(0.4,0.4, 1, 1), new THREE.MeshBasicMaterial({transparent:true,map: THREE.ImageUtils.loadTexture('input/monopoly.jpg'), side: THREE.DoubleSide})));
+				obj.position.set(camera.position.x - vector.x*19, camera.position.y- vector.y*19, camera.position.z - vector.z*19);
+				obj.lookAt(camera.position);
+				scene.add(obj);
+				break;
+			case 51:
+				var obj = (new THREE.Mesh(new THREE.PlaneGeometry(0.4,0.4, 1, 1), new THREE.MeshBasicMaterial({transparent:true,map: THREE.ImageUtils.loadTexture('input/Nintendo_Gameboy.jpg'), side: THREE.DoubleSide})));
+				obj.position.set(camera.position.x - vector.x*19, camera.position.y- vector.y*19, camera.position.z - vector.z*19);
+				obj.lookAt(camera.position);
+				scene.add(obj);
+				break;
+			case 52:
+				var obj = (new THREE.Mesh(new THREE.PlaneGeometry(0.4,0.4, 1, 1), new THREE.MeshBasicMaterial({transparent:true,map: THREE.ImageUtils.loadTexture('input/pacman.png'), side: THREE.DoubleSide})));
+				obj.position.set(camera.position.x - vector.x*19, camera.position.y- vector.y*19, camera.position.z - vector.z*19);
+				obj.lookAt(camera.position);
+				scene.add(obj);
+				break;
+			case 53:
+				var obj = (new THREE.Mesh(new THREE.PlaneGeometry(0.4,0.4, 1, 1), new THREE.MeshBasicMaterial({transparent:true,map: THREE.ImageUtils.loadTexture('input/sun.png'), side: THREE.DoubleSide})));
+				obj.position.set(camera.position.x - vector.x*19, camera.position.y- vector.y*19, camera.position.z - vector.z*19);
+				obj.lookAt(camera.position);
+				scene.add(obj);
+				break;
+			case 54:
+				var obj = (new THREE.Mesh(new THREE.PlaneGeometry(0.4,0.4, 1, 1), new THREE.MeshBasicMaterial({transparent:true,map: THREE.ImageUtils.loadTexture('input/tire.jpg'), side: THREE.DoubleSide})));
+				obj.position.set(camera.position.x - vector.x*19, camera.position.y- vector.y*19, camera.position.z - vector.z*19);
+				obj.lookAt(camera.position);
+				scene.add(obj);
+				break;
+			case 55:
+				var obj = (new THREE.Mesh(new THREE.PlaneGeometry(0.4,0.4, 1, 1), new THREE.MeshBasicMaterial({transparent:true,map: THREE.ImageUtils.loadTexture('input/triangle.jpg'), side: THREE.DoubleSide})));
+				obj.position.set(camera.position.x - vector.x*19, camera.position.y- vector.y*19, camera.position.z - vector.z*19);
+				obj.lookAt(camera.position);
+				scene.add(obj);
+				break;
+			case 56:
+				var obj = (new THREE.Mesh(new THREE.PlaneGeometry(0.4,0.4, 1, 1), new THREE.MeshBasicMaterial({transparent:true,map: THREE.ImageUtils.loadTexture('img/ball.jpg'), side: THREE.DoubleSide})));
+				obj.position.set(camera.position.x - vector.x*19, camera.position.y- vector.y*19, camera.position.z - vector.z*19);
+				obj.lookAt(camera.position);
+				scene.add(obj);
+				break;
+		  }	  
+	  };
+	var txt;
     init();
     animate();
 
@@ -299,6 +413,8 @@ var effect, objects={};
 
       loadScene();
 
+	  reset = scene.clone();
+	  
       // Add OrbitControls so that we can pan around with the mouse.
 //      controls = new THREE.OrbitControls(camera, renderer.domElement);
 //      controls = new THREE.PointerLockControls(camera);
@@ -310,16 +426,45 @@ var effect, objects={};
 
 
     }
+	
+	
+	function isValidMove(point)
+	{
+		return !(point.x > 0.2 || point.x < -4.1 || point.z > 1.4 || point.z < -1.6)	
+	}
 
     // Renders the scene and updates the render as needed.
     function animate() {
 
       // Read more about requestAnimationFrame at http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
       requestAnimationFrame(animate);
-      
-
-
-
+    
+		  var point;
+		  var vector = new THREE.Vector3( 0, 0, 0.025 );
+		  vector.applyQuaternion( camera.quaternion );
+		  
+if (w) {
+point = new THREE.Vector3(camera.position.x - vector.x, camera.position.y, camera.position.z - vector.z);
+				if (isValidMove(point)){camera.position.set(point.x,point.y,point.z);}
+}
+if (a) {
+			    vector = new THREE.Vector3( 0.025,0, 0  );
+		        vector.applyQuaternion( camera.quaternion );
+				point = new THREE.Vector3(camera.position.x - vector.x, camera.position.y, camera.position.z - vector.z);
+				if(isValidMove(point))camera.position.set(point.x,point.y,point.z); 
+}
+if (s) {
+				point = new THREE.Vector3(camera.position.x + vector.x, camera.position.y, camera.position.z + vector.z);
+				if(isValidMove(point)) {camera.position.set(point.x,point.y,point.z);}
+}
+if (d) {
+			    vector = new THREE.Vector3(-0.025,0, 0  );
+		        vector.applyQuaternion( camera.quaternion );
+				point = new THREE.Vector3(camera.position.x - vector.x, camera.position.y, camera.position.z - vector.z)
+				if(isValidMove(point)) {
+				  camera.position.set(point.x,point.y,point.z);
+				}
+}
 
 if (!updateVRDevice()) {
           // If we don't have a VR device just spin the model around to give us
