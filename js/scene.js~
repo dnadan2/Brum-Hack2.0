@@ -72,7 +72,7 @@ function onload() {
   objects['bed'].position.set(0,0,0);
   objects['door'].position.set(-3,0.7,1.75);
   objects['door'].scale.set(0.3,0.3,0.3);
-  objects['monster'].position.set(-2,0,0.2);
+  objects['monster'].position.set(-2,0,1.75);
   objects['door'].rotateY(Math.PI/2);
 }
 
