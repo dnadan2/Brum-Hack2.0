@@ -272,7 +272,7 @@ var effect, objects={};
 
 var reset;
 
-var w=false,s=false,a=false,d=false;
+var w=false,s=false,a=false,d=false,q=false,e=false;
 this.onkeyup = function(event) {
   switch (event.keyCode) {
     case 38:
@@ -287,6 +287,10 @@ this.onkeyup = function(event) {
 			case 39: /*right*/
 			case 68: /*D*/ 
 			    d=false;break;
+			case 69: /*E*/ 
+			    e=false;break;
+			case 81: /*Q*/ 
+			    q=false;break;
   }
 };
 this.onkeydown = function ( event ) {
@@ -310,7 +314,10 @@ this.onkeydown = function ( event ) {
 			case 39: /*right*/
 			case 68: /*D*/ 
 			    d = true;break;
-
+			case 69:
+                            e = true;break;
+                        case 81:
+                            q = true;break;
 			case 82: /*R*/  camera.position.set(-3,1,0);scene = reset;reset=scene.clone();break;
 			case 70: /*F*/  break;
 			
@@ -465,12 +472,18 @@ if (d) {
 				  camera.position.set(point.x,point.y,point.z);
 				}
 }
+if (q) {
+  camera.rotateY(0.01);
+}
+if (e) {
+  camera.rotateY(-0.01);
+}
 
 if (!updateVRDevice()) {
           // If we don't have a VR device just spin the model around to give us
           // something pretty to look at.
           if (objects['bed'].rotation) {
-            objects['bed'].rotation.y += 0.01;
+//            objects['bed'].rotation.y += 0.01;
           }
         }
 
@@ -488,7 +501,7 @@ if (vrMode) {
           renderer.render(scene, cameraRight);
         } else {
           // Render mono view
-          effect.render(scene, camera);
+          renderer.render(scene, camera);
         }
 
       
